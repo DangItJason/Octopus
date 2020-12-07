@@ -4,7 +4,16 @@ import { Accordion, Card, Button } from 'react-bootstrap';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { ToastProvider, useToasts } from 'react-toast-notifications'
 import '../../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
+
+const SendReceiptButton = (obj) => {
+    const { addToast } = useToasts()
+    const onClick = c => {
+        addToast('Receipt successfully sent to ' + obj.value + '!', { appearance: 'success' })
+    }      
+    return <Button onClick={onClick}>Send Receipt</Button>
+}
 
 class Deliveries extends Component {
     constructor(props) {
@@ -52,7 +61,12 @@ class Deliveries extends Component {
                 <Accordion.Collapse eventKey="0">
                     <Card.Body>
                         <p>{customer.telephone}</p>
-                        {customer.email !== "" ? <div><p>{customer.email}</p><Button>Send Receipt</Button></div> : null}
+                        {customer.email !== "" ? 
+                            <div>
+                                <p>{customer.email}</p>
+                                <ToastProvider autoDismissTimeout={3000} autoDismiss={true}><SendReceiptButton value={customer.email} /></ToastProvider>
+                            </div>
+                        : null}
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
