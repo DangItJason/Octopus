@@ -48,12 +48,16 @@ body {
     margin-right: 0.5rem;
 }
 
-#sidebar-wrapper, #sidebar-wrapper a:hover,  #sidebar-wrapper a.tab-active{
-    color: #FFF;
+#sidebar-wrapper, #sidebar-wrapper a:hover,  #sidebar-wrapper a.tab-active {
+    color: #CEEDDE;
 }
 
 #sidebar-wrapper a {
     color: #DBDBDB;
+}
+
+#sidebar-wrapper a.tab-active {
+    font-weight: bold;
 }
 
 .hr {

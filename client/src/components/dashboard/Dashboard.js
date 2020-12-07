@@ -9,7 +9,7 @@ class Dashboard extends Component {
     constructor(props) {
         super(props)
         this.toggleMenu = this.toggleMenu.bind(this);
-        this.state = { sidebarToggled: false, tab: "home" };
+        this.state = { sidebarToggled: false, tab: "deliveries" };
     }
 
     toggleMenu = () => {
@@ -22,8 +22,8 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div className={classNames("d-flex", (this.state.sidebarToggled) ? "toggled":"")} id="dashboard-wrapper">
-                <Sidebar changeTab={this.updateTab} />
+            <div className={classNames("d-flex", (this.state.sidebarToggled) ? "toggled" : "")} id="dashboard-wrapper">
+                <Sidebar changeTab={this.updateTab} extension={this.state.tab} />
                 <Panel action={this.toggleMenu} extension={this.state.tab} />
             </div>
         );
