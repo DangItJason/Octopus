@@ -7,15 +7,15 @@ body {
 }
 
 .btn-red {
-    background-color: #E66064;
+    background-color: #5F91E2;
 }
 
 .btn-red:hover, .btn-red:focus {
-    background-color: #BC4F52;
+    background-color: #5F91E2;
 }
 
 #sidebar-wrapper {
-    background-image: linear-gradient(180deg, #E66064 10%, #C93642 100%);
+    background-image: linear-gradient(180deg, #5F91E2 10%, #356DC6 100%);
     background-size: cover;
     min-height: 100vh;
     margin-left: -15rem;
