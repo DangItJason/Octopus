@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Container, ListGroup, ListGroupItem, Modal, Button, InputGroup, FormControl } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,8 +11,28 @@ class RestaurantInfo extends Component {
             location: "Troy, NY",
             number: "999-999-9999",
             hours: "10AM - 8PM, M-F",
-            desc: "The best authentic food in Kansas."
+            desc: "The best authentic food in Kansas.",
+            tempDesc: "The best authentic food in Kansas.",
+            descModal: false
         }
+    }
+
+    toggleDescModal = () => {
+        this.setState({ descModal: !this.state.descModal });
+    };
+
+    handleDescChange = (e) => {
+        this.setState({ tempDesc: e.target.value });
+    }
+
+    saveDescChange = (e) => {
+        this.setState({ desc: this.state.tempDesc });
+        this.toggleDescModal(e);
+    }
+    
+    cancelDescChange = (e) => {
+        this.setState({ tempDesc: this.state.desc });
+        this.toggleDescModal(e);
     }
 
     render() {
@@ -25,7 +45,25 @@ class RestaurantInfo extends Component {
                     <ListGroupItem>Location: {this.state.location}<FontAwesomeIcon icon={faEdit} className="icon-edit" /></ListGroupItem>
                     <ListGroupItem>Phone Number: {this.state.number}<FontAwesomeIcon icon={faEdit} className="icon-edit" /></ListGroupItem>
                     <ListGroupItem>Hours: {this.state.hours}<FontAwesomeIcon icon={faEdit} className="icon-edit" /></ListGroupItem>
-                    <ListGroupItem>Description: {this.state.desc}<FontAwesomeIcon icon={faEdit} className="icon-edit" /></ListGroupItem>
+                    <ListGroupItem>
+                        Description: {this.state.desc}<FontAwesomeIcon icon={faEdit} onClick={this.toggleDescModal} className="icon-edit" />
+                        <Modal show={this.state.descModal} onHide={this.toggleDescModal}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Edit Description</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                Change your restaurant's description here.
+                                <hr/>
+                                <InputGroup>
+                                    <FormControl value={this.state.tempDesc} as="textarea" rows={3} onChange={this.handleDescChange} />
+                                </InputGroup>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="primary" onClick={this.saveDescChange}>Save</Button>
+                                <Button variant="secondary" onClick={this.toggleDescModal}>Cancel</Button>
+                            </Modal.Footer>
+                        </Modal>
+                    </ListGroupItem>
                 </ListGroup>
             </Container>
         );
