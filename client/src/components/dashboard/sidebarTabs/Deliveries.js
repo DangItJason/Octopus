@@ -41,6 +41,24 @@ class Deliveries extends Component {
         return timeStr;
     }
 
+    formatBuyer = customer => {
+        return (
+        <Accordion>
+            <Card>
+                <Card.Header>
+                {customer.name}
+                    <Accordion.Toggle as={Button} variant="link" eventKey="0"><FontAwesomeIcon icon={faBars} /></Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                    <Card.Body>
+                        <p>{customer.telephone}</p>
+                        {customer.email !== "" ? <div><p>{customer.email}</p><Button>Send Receipt</Button></div> : null}
+                    </Card.Body>
+                </Accordion.Collapse>
+            </Card>
+        </Accordion>);
+    }
+
     formatPrice = price => {
         return "$" + price;
     }
@@ -71,7 +89,7 @@ class Deliveries extends Component {
                 <div class="container-fluid">
                     <BootstrapTable data={this.state.deliveries} striped hover>
                         <TableHeaderColumn isKey dataFormat={this.formatTime} dataField='whenPlaced'>Order Time</TableHeaderColumn>
-                        <TableHeaderColumn dataField='buyerName'>Customer Name</TableHeaderColumn>
+                        <TableHeaderColumn dataFormat={this.formatBuyer} dataField='buyer'>Customer Name</TableHeaderColumn>
                         <TableHeaderColumn dataFormat={this.formatPrice} dataField='totalPrice'>Total Price</TableHeaderColumn>
                         <TableHeaderColumn dataFormat={this.formatOrder} dataField='order'>Order Contents</TableHeaderColumn>
                     </BootstrapTable>
