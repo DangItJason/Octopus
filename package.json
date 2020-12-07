@@ -1,0 +1,19 @@
+{
+  "name": "octopus",
+  "version": "1.0.0",
+  "description": "CSCI-4440 Octopus",
+  "main": "server/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DangItJason/Octopus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DangItJason/Octopus/issues"
+  },
+  "homepage": "https://github.com/DangItJason/Octopus#readme"
+}
