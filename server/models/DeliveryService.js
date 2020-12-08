@@ -9,4 +9,4 @@ const DeliverySchema = new Schema({
     timesUsed: { type: Number, required: true }
 });
 
-module.exports = Delivery = mongoose.model('Delivery', DeliverySchema);
+module.exports = DeliveryService = mongoose.model('DeliveryService', DeliverySchema);
