@@ -17,17 +17,19 @@ class RestaurantInfo extends Component {
         }
     }
 
+    setRestaurantInfo = (event, field, obj) => {
+        if (field === "desc") {
+            this.setState({ desc: obj["desc"] });
+            this.toggleDescModal(event);
+        }
+    }
+
     toggleDescModal = () => {
         this.setState({ descModal: !this.state.descModal });
     };
 
     handleDescChange = (e) => {
         this.setState({ tempDesc: e.target.value });
-    }
-
-    saveDescChange = (e) => {
-        this.setState({ desc: this.state.tempDesc });
-        this.toggleDescModal(e);
     }
     
     cancelDescChange = (e) => {
@@ -59,7 +61,7 @@ class RestaurantInfo extends Component {
                                 </InputGroup>
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button variant="primary" onClick={this.saveDescChange}>Save</Button>
+                                <Button variant="primary" onClick={() => this.setRestaurantInfo(this, "desc", {desc: this.state.tempDesc})}>Save</Button>
                                 <Button variant="secondary" onClick={this.toggleDescModal}>Cancel</Button>
                             </Modal.Footer>
                         </Modal>
