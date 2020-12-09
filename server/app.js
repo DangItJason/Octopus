@@ -8,12 +8,15 @@ var cors = require("cors");
 var app = express();
 
 const uri =
-  "mongodb://127.0.0.1:27017";
+  "mongodb+srv://octopus:Th1QAvEUnPhRG5nB@cluster0.8jdm9.mongodb.net/octopus?retryWrites=true&w=majority";
 mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true });
+
 
 
 //Routes
 var indexRouter = require("./routes/index");
+require("./routes/menu.routes")(app);
+require("./routes/dish.routes")(app);
 
 app.use(cors({
   origin: "http://localhost:3000",
@@ -31,6 +34,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter)
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
