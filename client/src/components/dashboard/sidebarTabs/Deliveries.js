@@ -18,26 +18,50 @@ const SendReceiptButton = (obj) => {
 class Deliveries extends Component {
     constructor(props) {
         super(props);
-        this.state = { deliveries: [] };
+        this.state = { 
+            deliveries: [
+            {
+                buyer: {name: "Jeremy W", telephone: "555-555-5555", email: "test1@gmail.com"},
+                order: [
+                    {name: "Hotdog", price: 2, description: "", timesSold: 2, isAvailable: true},
+                    {name: "Burger", price: 3, description: "", timesSold: 3, isAvailable: true},
+                    {name: "Coffee", price: 4, description: "", timesSold: 4, isAvailable: true}
+                ],
+                totalPrice: 9.88,
+                whenPlaced: new Date('December 7, 2020 00:18:00'),
+                serviceType: "DoorDash"
+            },
+            {
+                buyer: {name: "Nick C", telephone: "098-765-4321", email: "test2@gmail.com"},
+                order: [
+                    {name: "Water", price: 2, description: "", timesSold: 2, isAvailable: true},
+                    {name: "Soup", price: 4, description: "", timesSold: 4, isAvailable: true}
+                ],
+                totalPrice: 6.98,
+                whenPlaced: new Date('December 6, 2020 19:00:00'),
+                serviceType: "GrubHub"
+            }
+        ]
+        }; 
     }
 
-    componentDidMount() {
-        let url = "http://localhost:9000/deliveries";
-        let headers = {
-        "Content-Type": "application/json",
-        };
-        fetch(url, { method: "GET", headers: headers })
-        .then((res) => {
-            return res.json();
-        })
-        .then((deliveries) => {
-            deliveries.map((delivery) =>
-                this.setState((prevState) => ({
-                    deliveries: [...prevState.deliveries, delivery],
-                }))
-            );
-        });
-    }
+    // componentDidMount() {
+    //     let url = "http://localhost:9000/deliveries";
+    //     let headers = {
+    //     "Content-Type": "application/json",
+    //     };
+    //     fetch(url, { method: "GET", headers: headers })
+    //     .then((res) => {
+    //         return res.json();
+    //     })
+    //     .then((deliveries) => {
+    //         deliveries.map((delivery) =>
+    //             this.setState((prevState) => ({
+    //                 deliveries: [...prevState.deliveries, delivery],
+    //             }))
+    //         );
+    //     });
+    // }
 
     formatTime = date => {
         let hours = date.getHours();

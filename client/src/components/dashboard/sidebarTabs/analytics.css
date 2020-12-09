@@ -1,0 +1,21 @@
+.title {
+    font-size: 35px;
+}
+
+.legend {
+    display: flex;
+    width: 200px;
+    justify-content: space-evenly;
+}
+
+.red {
+    background-color: red;
+    height: 20px;
+    width: 20px
+}
+
+.blue {
+    background-color: blue;
+    height: 20px;
+    width: 20px
+}
